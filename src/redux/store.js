@@ -22,11 +22,13 @@ const persistConfig = {
 
 const persistedReducers = persistReducer(persistConfig, rootReducer);
 
+const loggerMiddleware = process.env.NODE_ENV !== 'production' && logger;
+
 // Store
 export const store = configureStore({
   reducer: persistedReducers,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }).concat(logger),
+    getDefaultMiddleware({ serializableCheck: false }).concat(loggerMiddleware),
   devTools: process.env.NODE_ENV !== 'production',
 });
 
