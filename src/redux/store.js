@@ -22,7 +22,7 @@ const persistConfig = {
 
 const persistedReducers = persistReducer(persistConfig, rootReducer);
 
-const loggerMiddleware = process.env.NODE_ENV !== 'production' && logger;
+const loggerMiddleware = process.env.NODE_ENV !== 'production' ? logger : null;
 
 // Store
 export const store = configureStore({
